@@ -38,7 +38,7 @@ function restart() {
 }
 
 function add(a, x) {
-    while (a.length < x) {
+    while (a.length <= x) {
         a.push(0);
     }
     a[x] += 1;
@@ -52,7 +52,7 @@ function step() {
     }
     for (i = cnt - 1; i < cnt + 2; i++) {
         value[(min + i) % cnt] = Math.random();
-        //color[(min + i) % cnt] = tclr[2];
+        color[(min + i) % cnt] = tclr[2];
     }
     pmin = min;
     min = 0
@@ -75,7 +75,7 @@ function step() {
         fretplot.replot({data: [fret]});
     }
     
-    //color[min] = tclr[1];
+    color[min] = tclr[1];
     draw();
 }
 
@@ -90,7 +90,7 @@ function draw() {
     canvas.strokeStyle = 'red';
     canvas.moveTo(0, height * (1 - f));
     canvas.lineTo(width, height * (1 - f));
-    //canvas.stroke();
+    canvas.stroke();
 }
 
 $('#slider').change(function() {
