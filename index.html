@@ -27,21 +27,29 @@
     Прошло лавин: <span id='av'>0</span><br>
     Текущий уровень адаптивной поддержки: <span id='ap'>0</span><br>
     <br>
-    <form>
-    <div class='form-group'>
-    <label>
-    Скорость моделирования:
-    </label>
-    <input id='slider' type="range" min="499" max="999" value="999" step="10" class='form-control' style='width: 450px'> </input> 
-    </div>
+    <!--<form>-->
     <div class='form-group'>
     <label>
     Размер поля 
     </label>
-    <input id='cnt' value='100' width=50px class='form-control' style='width: 450px;'></input>
+    <input id='cnt' type="range" min="10" max="800" value="100" step="1" class='form-control' style='width: 450px'> </input> 
+    <div style='width: 450px; text-align: center'>
+    <div style='display: inline-block; width: 30%; text-align: left'>10</div>
+    <div style='display: inline-block; width: 30%; text-align: center'>400</div>
+    <div style='display: inline-block; width: 30%; text-align: right'>800</div>
     </div>
     <input type='button' onclick='restart()' class='btn btn-default' value='Запуск'></input>
-    <br>
+    <br><br>
+    <div class='form-group'>
+    <label>
+    Скорость моделирования:
+    </label>
+    <input id='slider' type="range" min="199" max="999" value="999" step="10" class='form-control' style='width: 450px'> </input> 
+    <div style='width: 450px; text-align: center'>
+    <div style='display: inline-block; width: 30%; text-align: left'>200</div>
+    <div style='display: inline-block; width: 30%; text-align: center'>600</div>
+    <div style='display: inline-block; width: 30%; text-align: right'>1000</div>
+    </div>
     <div class='checkbox'>
     <label>
     <input type='checkbox' id='donotplot'> Не отрисовывать графики (эволюция идет заметно быстрее)
@@ -53,7 +61,7 @@
     <br>
     <div id='fretdiv' style="width: 450px; height: 350px;">
     </div>
-    </form>
+    <!--</form>-->
     
 </td>
 <td style=' vertical-align: top; width: 800px'>

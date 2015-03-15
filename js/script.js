@@ -17,6 +17,7 @@ var dist = []
 var fret = []
 var plotf = 1
 var ap = 0
+var timer = 0
 
 distplot = $.jqplot('distdiv', [[1]], {
     title: 'Распределение расстояния между последующими минимумами',
@@ -60,6 +61,9 @@ fretplot = $.jqplot('fretdiv', [[1]], {
 });
 
 function restart() {
+    $('#it').html(0);
+    $('#av').html(0);
+    $('#ap').html(0);
     cnt = Math.round($('#cnt').val())
     value = []
     color = []
@@ -141,9 +145,11 @@ function draw() {
 }
 
 $('#slider').change(function() {
-    clearInterval(timer);
-    wt = 1000 - $('#slider').val();
-    timer = setInterval(step, wt);
+    if (timer) {
+        clearInterval(timer);
+        wt = 1000 - $('#slider').val();
+        timer = setInterval(step, wt);
+    }
 });
 
 $('#donotplot').change(function() {
