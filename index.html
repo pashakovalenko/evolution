@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Модель эволюции Бака-Снеппена</title>
+<script src="./js/jquery.js"></script>
+<script src="./jqplot/jquery.jqplot.js"></script>
+<script src="./jqplot/plugins/jqplot.logAxisRenderer.js"></script>
+<script src="./jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+<script src="./jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
+<script type="text/javascript" src="./jqplot/plugins/jqplot.barRenderer.min.js"></script>
+<script type="text/javascript" src="./jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="./jqplot/plugins/jqplot.pointLabels.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./jqplot/jquery.jqplot.css" />
+<link rel="stylesheet" type="text/css" href="./bootstrap.min.css" />
+</head>
+
+<body>
+<h1 style='text-align: center'>Модель эволюции Бака-Снеппена</h1>
+<table style='margin: 0 auto; border: 0px;'>
+<tr>
+<td style='width: 600px;'>
+    Демонстрация модели эволюции Бака-Снеппена<br>
+    Теория и комментарии к графикам находятся под правым графиком
+    <br><br>
+    Прошло итераций эволюции: <span id='it'>0</span><br>
+    Прошло лавин: <span id='av'>0</span><br>
+    <br>
+    <form>
+    <div class='form-group'>
+    <label>
+    Скорость моделирования:
+    </label>
+    <input id='slider' type="range" min="499" max="999" value="999" step="10" class='form-control' style='width: 450px'> </input> 
+    </div>
+    <div class='form-group'>
+    <label>
+    Размер поля 
+    </label>
+    <input id='cnt' value='100' width=50px class='form-control' style='width: 450px;'></input>
+    </div>
+    <input type='button' onclick='restart()' class='btn btn-default' value='Запуск'></input>
+    <br>
+    <div class='checkbox'>
+    <label>
+    <input type='checkbox' id='donotplot'> Не отрисовывать графики (эволюция идет заметно быстрее)
+    </label>
+    </div>
+    <br>
+    <div id='distdiv' style="width: 450px; height: 350px;">
+    </div>
+    <br>
+    <div id='fretdiv' style="width: 450px; height: 350px;">
+    </div>
+    </form>
+    
+</td>
+<td style=' vertical-align: top; width: 800px'>
+    <canvas id='mycanvas' height='600' width='800'>Не взлетело(</canvas>
+    <br><br>
+    <p>Краткое описание</p>
+    <p>Имеется N объектов, представляющих собой биологические виды. Каждый вид характеризуется своей приспособленностью - числом от 0 до 1. Изначально они расставляются случайно.
+    На каждой итерации эволюции выбирается наименее приспособленный вид - вид с наименьшей приспособленностью =). Он подвергается случайной мутации, в результате чего его приспособленность принимает случайное значение. В новых условиях его ближайшие соседи вынуждены перестраиваться, в результате чего они тоже получают новые случайные приспособленности. Первый и последний элементы считаются соседними.</p>
+    <p>Расстояние между последующими минимумами - расстояние между минимумами на текущем и предыдущем шагах.</p>
+    <p>Время первого возврата - промежуток времени между последующими событиями, когда один и тот же элемент оказался минимальным.</p>
+    <p>Красной прямой на графике обозначен порог критического значения, приблизительно равный 2/3.</p>
+    <p>Отрисовка графиков является узким местом программы. Но статистика для графиков собирается, даже когда они не отрисовываются. Поэтому графики можно время от времени включать и выключать</p>
+</td>
+</tr>
+</table>
+<script type="text/javascript" src="./js/script.js"></script>
+</body>
+</html>
