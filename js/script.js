@@ -1,5 +1,5 @@
 var cnt = 50
-var interval = 1
+var wt = 1
 var value = []
 var color = []
 var prev = []
@@ -18,6 +18,47 @@ var fret = []
 var plotf = 1
 var ap = 0
 
+distplot = $.jqplot('distdiv', [[1]], {
+    title: 'Распределение расстояния между последующими минимумами',
+    axes: {
+        xaxis: {
+            renderer: $.jqplot.LogAxisRenderer,
+        },
+        yaxis: {
+            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+            renderer: $.jqplot.LogAxisRenderer,
+        },
+    },
+    series: [{
+        color: '#4b5de4',
+        markerOptions: {
+            size: 5
+        }
+
+    }]
+});
+
+fretplot = $.jqplot('fretdiv', [[1]], {
+    title: 'Распределение времени первого возврата',
+    axes: {
+        xaxis: {
+            renderer: $.jqplot.LogAxisRenderer,
+        },
+        yaxis: {
+            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+            renderer: $.jqplot.LogAxisRenderer,
+        },
+    },
+    series: [{
+        color: '#4b5de4',
+        showLine: false,
+        markerOptions: {
+            size: 5
+        }
+
+    }]
+});
+
 function restart() {
     cnt = Math.round($('#cnt').val())
     value = []
@@ -35,7 +76,7 @@ function restart() {
         prev.push(0);
         color.push(tclr[0]);
     }
-    timer = setInterval(step, interval);
+    timer = setInterval(step, wt);
 
 }
 
@@ -101,54 +142,10 @@ function draw() {
 
 $('#slider').change(function() {
     clearInterval(timer);
-    interval = 1000 - $('#slider').val();
-    timer = setInterval(step, interval);
+    wt = 1000 - $('#slider').val();
+    timer = setInterval(step, wt);
 });
 
 $('#donotplot').change(function() {
     plotf = ! $('#donotplot').prop('checked');
-});
-
-distplot = $.jqplot('distdiv', [[1, 0]], {
-    title: 'Распределение расстояния между последующими минимумами',
-    axes: {
-        xaxis: {
-            //label: 'Расстояние между минимумами',
-            renderer: $.jqplot.LogAxisRenderer,
-        },
-        yaxis: {
-            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
-            renderer: $.jqplot.LogAxisRenderer,
-        },
-    },
-    series: [{
-        color: '#5555EE',
-        //showLine: false,
-        markerOptions: {
-            size: 5
-        }
-
-    }]
-});
-
-fretplot = $.jqplot('fretdiv', [[1, 0]], {
-    title: 'Распределение времени первого возврата',
-    axes: {
-        xaxis: {
-            //label: 'Время первого возврата',
-            renderer: $.jqplot.LogAxisRenderer,
-        },
-        yaxis: {
-            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
-            renderer: $.jqplot.LogAxisRenderer,
-        },
-    },
-    series: [{
-        color: '#5555EE',
-        showLine: false,
-        markerOptions: {
-            size: 5
-        }
-
-    }]
 });
