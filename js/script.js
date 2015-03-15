@@ -16,6 +16,7 @@ var avcnt = 0
 var dist = []
 var fret = []
 var plotf = 1
+var ap = 0
 
 function restart() {
     cnt = Math.round($('#cnt').val())
@@ -28,6 +29,7 @@ function restart() {
     avcnt = 0
     dist = []
     fret = []
+    ap = 0
     for (i = 0; i < cnt; i++) {
         value.push(Math.random());
         prev.push(0);
@@ -64,6 +66,10 @@ function step() {
     if (value[min] > f) {
         avcnt++;
         $('#av').html(avcnt);
+    }
+    if (value[min] > ap) {
+        ap = value[min];
+        $('#ap').html(ap);
     }
     t = Math.abs(pmin - min)
     t = Math.min(t, cnt - t)
